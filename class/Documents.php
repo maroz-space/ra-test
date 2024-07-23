@@ -4,7 +4,7 @@ Class Documents
 {
 
 
-    private static $conn = false;   //  ссылка на добключение в БД
+    private static $conn = false;   //  ссылка на подключение в БД
     private static $errors = [      //  шаблоны ошибок
         'conn'  => 'Не удалось подключиться к БД',
         'query' => 'Ошибка выполнения запроса БД',
@@ -40,7 +40,7 @@ Class Documents
     }
 
 
-    //  управление трназакцией
+    //  управление транзакцией
     private static function transaction($operation)
     {
         //  инициализация подключения к БД
@@ -122,7 +122,7 @@ Class Documents
             $c = $data['date'] > '2100-01-01';
             if (!$a || $b || $c) return 'Дата указана некорректно';
         
-        //  список спецификации
+        //  список спецификаций
             if (empty($data['detail'])) $data['detail'] = [];
             $test = [];
             foreach ($data['detail'] as $e) {
@@ -162,7 +162,7 @@ Class Documents
                 ORDER BY `m`.`id` DESC
             ";
 
-        //  выполнение запроса и обратотка результата
+        //  выполнение запроса и обработка результата
             $res = [];
             $res_db = mysqli_fetch_all(self::query($sql), MYSQLI_ASSOC);
             foreach ($res_db as $row) {
